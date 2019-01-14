@@ -1293,7 +1293,6 @@ BaseMethods.CrLaTeX = function(parser: TexParser, name: string) {
  * @param {string} style Style of the line. E.g., dashed.
  */
 BaseMethods.HLine = function(parser: TexParser, name: string, style: string) {
-    console.log("BaseMethods.HLine=>");
   if (style == null) {
     style = 'solid';
   }

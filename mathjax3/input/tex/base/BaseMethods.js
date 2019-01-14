@@ -737,7 +737,6 @@ BaseMethods.CrLaTeX = function (parser, name) {
     }
 };
 BaseMethods.HLine = function (parser, name, style) {
-    console.log("BaseMethods.HLine=>");
     if (style == null) {
         style = 'solid';
     }

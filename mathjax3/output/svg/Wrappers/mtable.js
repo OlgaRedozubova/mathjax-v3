@@ -114,8 +114,9 @@ var SVGmtable = (function (_super) {
         for (var i = 0; i < lines.length; i++) {
             var _b = __read(this.getRowHD(equal, HD, H[i], D[i]), 2), rH = _b[0], rD = _b[1];
             y -= rSpace[i] + rH + rD + rSpace[i + 1];
-            console.log('handleRowLines=>');
-            this.adaptor.append(svg, this.makeHLine(y, lines[i], rLines[i]));
+            if (lines[i] !== 'none') {
+                this.adaptor.append(svg, this.makeHLine(y, lines[i], rLines[i]));
+            }
             y -= rLines[i];
         }
     };
@@ -160,7 +161,6 @@ var SVGmtable = (function (_super) {
         }));
     };
     SVGmtable.prototype.makeHLine = function (y, style, t) {
-        console.log('makeHLine=>');
         var w = this.getBBox().w;
         var dt = (style === 'dotted' ? t / 2 : 0);
         var Y = this.fixed(y - t / 2);
