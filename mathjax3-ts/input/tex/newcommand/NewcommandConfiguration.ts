@@ -27,15 +27,6 @@ import {BeginEnvItem} from './NewcommandItems.js';
 import './NewcommandMappings.js';
 
 
-/**
- * Init method for Newcommand package.
- * @param {Configuration} config The current configuration.
- */
-let init = function(config: Configuration) {
-  config.append(Configuration.extension());
-};
-
-
 export const NewcommandConfiguration = Configuration.create(
   'newcommand',
   {handler: {
@@ -44,8 +35,7 @@ export const NewcommandConfiguration = Configuration.create(
    items: {
      [BeginEnvItem.prototype.kind]: BeginEnvItem,
    },
-   options: {maxMacros: 1000},
-   init: init
+   options: {maxMacros: 1000}
   }
 );
 

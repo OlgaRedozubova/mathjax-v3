@@ -43,13 +43,6 @@ export type ProcessorList = (Function | [Function, number])[]
 
 export class Configuration {
 
-
-  /**
-   * Priority list of init methods.
-   * @type {FunctionList}
-   */
-  protected initMethod: FunctionList = new FunctionList();
-
   /**
    * Creates a configuration for a package.
    * @param {string} name The package name.
@@ -65,8 +58,6 @@ export class Configuration {
    *      string wrt. to given parse options. Can contain a priority.
    *  * _postprocessors_ list of functions for postprocessing the MmlNode
    *      wrt. to given parse options. Can contain a priority.
-   *  * _init_ init method.
-   *  * _priority_ priority of the init method.
    * @return {Configuration} The newly generated configuration.
    */
   public static create(name: string,
@@ -77,9 +68,7 @@ export class Configuration {
                                 options?: OptionList,
                                 nodes?: {[key: string]: any},
                                 preprocessors?: ProcessorList,
-                                postprocessors?: ProcessorList,
-                                init?: Function,
-                                priority?: number
+                                postprocessors?: ProcessorList
                                } = {}) {
     return new Configuration(name,
                              config.handler || {},
@@ -89,14 +78,13 @@ export class Configuration {
                              config.options || {},
                              config.nodes || {},
                              config.preprocessors || [],
-                             config.postprocessors || [],
-                             [config.init, config.priority]
+                             config.postprocessors || []
                             );
   }
 
 
   /**
-   * @return {Configuration} An empty configuration.
+   * An empty configuration.
    */
   public static empty(): Configuration {
     return Configuration.create('empty');
@@ -104,7 +92,7 @@ export class Configuration {
 
 
   /**
-   * @return {Configuration} Initialises and returns the extension maps.
+   * Initialises extension maps.
    */
   public static extension(): Configuration {
     new sm.MacroMap(ExtensionMaps.NEW_MACRO, {}, {});
@@ -123,14 +111,6 @@ export class Configuration {
                  environment: [ExtensionMaps.NEW_ENVIRONMENT]
                 }});
   };
-
-
-  /**
-   * Init method for the configuration.
-   */
-  public init(configuration: Configuration) {
-    this.initMethod.execute(configuration);
-  }
 
 
   /**
@@ -158,9 +138,6 @@ export class Configuration {
     for (let post of config.postprocessors) {
       this.postprocessors.push(post);
     };
-    for (let init of config.initMethod.toArray()) {
-      this.initMethod.add(init.item, init.priority);
-    };
   }
 
 
@@ -175,12 +152,8 @@ export class Configuration {
                       readonly options: OptionList = {},
                       readonly nodes: {[key: string]: any} = {},
                       readonly preprocessors: ProcessorList = [],
-                      readonly postprocessors: ProcessorList = [],
-                      [init, priority]: [Function, number]
+                      readonly postprocessors: ProcessorList = []
              ) {
-    if (init) {
-      this.initMethod.add(init, priority || 0);
-    }
     this.handler = Object.assign(
       {character: [], delimiter: [], macro: [], environment: []}, handler);
     ConfigurationHandler.set(name, this);
@@ -221,3 +194,5 @@ export namespace ConfigurationHandler {
   };
 
 }
+
+
