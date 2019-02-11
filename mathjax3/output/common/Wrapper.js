@@ -245,7 +245,7 @@ var CommonWrapper = (function (_super) {
             }
             else {
                 if (this.node.getProperty('variantForm'))
-                    variant = '-TeX-variant';
+                    variant = '-tex-variant';
                 variant = (CommonWrapper.BOLDVARIANTS[values.weight] || {})[variant] || variant;
                 variant = (CommonWrapper.ITALICVARIANTS[values.style] || {})[variant] || variant;
             }
