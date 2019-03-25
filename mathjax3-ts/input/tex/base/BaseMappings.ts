@@ -112,7 +112,8 @@ new sm.CharacterMap('mathchar0mi', ParseMethods.mathchar0mi, {
   // Ord symbols
   S:            ['\u00A7', {mathvariant: TexConstant.Variant.NORMAL}],
   aleph:        ['\u2135', {mathvariant: TexConstant.Variant.NORMAL}],
-  hbar:         ['\u210F', {variantForm: true}],
+  hbar:         ['\u0127', {mathvariant: TexConstant.Variant.NORMAL,
+      variantForm: true}],
   imath:        '\u0131',
   jmath:        '\u0237',
   ell:          '\u2113',
