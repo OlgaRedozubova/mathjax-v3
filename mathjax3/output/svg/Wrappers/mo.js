@@ -120,7 +120,7 @@ var SVGmo = (function (_super) {
         B = Math.max(0, B - VFUZZ);
         var adaptor = this.adaptor;
         var _a = __read(this.getChar(n), 3), h = _a[0], d = _a[1], w = _a[2];
-        var Y = H + D - T - B;
+        var Y = Math.max(0, H + D - T - B);
         var s = 1.5 * Y / (h + d);
         var y = (s * (h - d) - Y) / 2;
         var svg = this.svg('svg', {
