@@ -173,7 +173,7 @@ export class SVGmo<N, T, D> extends CommonMoMixin<SVGConstructor<N, T, D>>(SVGWr
         B = Math.max(0, B - VFUZZ);              // A little overlap on bottom
         const adaptor = this.adaptor;
         const [h, d, w] = this.getChar(n);
-        const Y = H + D - T - B;                 // The height of the extender
+        const Y = Math.max(0, H + D - T - B); // The height of the extender
         const s = 1.5 * Y / (h + d);             // Scale height by 1.5 to avoid bad ends
                                                  //   (glyphs with rounded or anti-aliased ends don't stretch well,
                                                  //    so this makes for sharper ends)
