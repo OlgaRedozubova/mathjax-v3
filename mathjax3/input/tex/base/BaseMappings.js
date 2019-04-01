@@ -58,7 +58,7 @@ new sm.CharacterMap('mathchar0mi', ParseMethods_js_1.default.mathchar0mi, {
     varphi: '\u03C6',
     S: ['\u00A7', { mathvariant: TexConstants_js_1.TexConstant.Variant.NORMAL }],
     aleph: ['\u2135', { mathvariant: TexConstants_js_1.TexConstant.Variant.NORMAL }],
-    hbar: ['\u210F', { variantForm: true }],
+    hbar: ['\u0127', { variantForm: true }],
     imath: '\u0131',
     jmath: '\u0237',
     ell: '\u2113',
